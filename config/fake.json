@@ -1,0 +1,7 @@
+{
+    "mongodb": {
+        "dbconfig": {
+            "url": "mongodb+srv://<username>:<password>@<clustername>.h3eenxt.mongodb.net/?retryWrites=true&w=majority&appName=<Clustername>"
+        }
+    }
+}

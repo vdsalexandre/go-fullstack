@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const config = require('config');
+const mongodbConnexionUrl = config.get('mongodb.dbconfig.url');
 
 const stuffRoutes = require('./routes/stuffRoute');
 const userRoutes = require('./routes/userRoute');
 
-mongoose.connect('mongodb+srv://vdsalex:vdsalex123@cluster0.h3eenxt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(mongodbConnexionUrl, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 })
