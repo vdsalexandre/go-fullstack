@@ -1,10 +1,16 @@
 const Thing = require('../models/Thing');
 
 exports.createThing = (req, res, next) => {
-    delete req.body._id;
+    const thingObject = JSON.parse(req.body.thing);
+    delete thingObject._id;
+    delete thingObject._userId;
+    const imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
     const thing = new Thing({
-        ...req.body
+        ...thingObject,
+        userId: req.auth.userId,
+        imageUrl: imageUrl
     });
+    console.log(imageUrl);
     thing.save()
     .then(() => res.status(201).json({ message: 'objet enregistré'} ))
     .catch(error => res.status(400).json({ error }));
